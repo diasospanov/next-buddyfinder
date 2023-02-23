@@ -14,15 +14,10 @@ export default function RootLayout({ children }) {
             <div>
               <Link href="/">Home</Link>
             </div>
-            <div>
-              <label>
-                E-mail
-                <input />
-              </label>
-              <label>
-                Password
-                <input />
-              </label>
+
+            <div className={styles.div}>
+              <Link href="/signin">Sign In</Link>
+              <Link href="/signup">Sign Up</Link>
             </div>
           </nav>
         </header>
