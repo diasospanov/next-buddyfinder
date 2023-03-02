@@ -3,6 +3,17 @@
   align-items: center;
   justify-content: center;
 }
+.div {
+  display: flex;
+  align-items: start;
+  justify-content: space-evenly;
+}
+.form {
+  display: block;
+  align-items: center;
+  padding-top: 80px;
+  padding-bottom: 50px;
+}
 .section {
   display: block;
   align-items: center;
