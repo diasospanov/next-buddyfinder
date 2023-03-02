@@ -2,9 +2,13 @@ import './global.scss';
 import Link from 'next/link';
 import styles from './layout.module.scss';
 
+type Props = {
+  children: React.ReactNode;
+};
+
 export const dynamic = 'force-dynamic';
 
-export default function RootLayout({ children }) {
+export default function RootLayout(props: Props) {
   return (
     <html lang="en">
       <head />
@@ -21,7 +25,7 @@ export default function RootLayout({ children }) {
             </div>
           </nav>
         </header>
-        {children}
+        {props.children}
         <footer className={styles.footer}>Di & Co. All rights reserved.</footer>
       </body>
     </html>
