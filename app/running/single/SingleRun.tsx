@@ -14,26 +14,70 @@ export default function SinglePage(props: Props) {
   const [editTime, setEditTime] = useState<string>('');
   const [editDistance, setEditDistance] = useState<number>();
   const [editPace, setEditPace] = useState<number>();
+  const [date, setDate] = useState<string>('');
+  const [time, setTime] = useState<string>('');
+  const [distance, setDistance] = useState<number>();
+  const [pace, setPace] = useState<number>();
+  const [error, setError] = useState<string>();
 
   return (
     <main>
       <h1 className={styles.h1}>Single runners up for a run</h1>
       <div className={styles.div}>
-        <form className={styles.form}>
+        <form
+          className={styles.form}
+          onSubmit={async (event) => {
+            event.preventDefault();
+            const response = await fetch('/api/running/single', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ date, time, distance, pace }),
+            });
+
+            const data = await response.json();
+
+            if (data.error) {
+              setError(data.error);
+              return;
+            }
+          }}
+        >
           <label>
-            Date: <input /> dd/mm/yy
+            Date:{' '}
+            <input
+              value={date}
+              onChange={(event) => setDate(event.currentTarget.value)}
+            />{' '}
+            dd/mm/yy
           </label>
           <br />
           <label>
-            Time: <input /> hh:mm
+            Time:{' '}
+            <input
+              value={time}
+              onChange={(event) => setTime(event.currentTarget.value)}
+            />{' '}
+            hh:mm
           </label>
           <br />
           <label>
-            Distance: <input /> km
+            Distance:{' '}
+            <input
+              value={distance}
+              onChange={(event: any) => setDistance(event.currentTarget.value)}
+            />{' '}
+            km
           </label>
           <br />
           <label>
-            Pace: <input /> min/km
+            Pace:{' '}
+            <input
+              value={pace}
+              onChange={(event: any) => setPace(event.currentTarget.value)}
+            />{' '}
+            min/km
           </label>
           <br />
           <button>
@@ -50,7 +94,7 @@ export default function SinglePage(props: Props) {
                       run.date
                     ) : (
                       <input
-                        value={run.date}
+                        value={editDate}
                         onChange={(event) =>
                           setEditDate(event.currentTarget.value)
                         }
@@ -61,9 +105,9 @@ export default function SinglePage(props: Props) {
                       run.time
                     ) : (
                       <input
-                        value={run.time}
+                        value={editTime}
                         onChange={(event) =>
-                          setEditDate(event.currentTarget.value)
+                          setEditTime(event.currentTarget.value)
                         }
                       />
                     )}{' '}
@@ -72,9 +116,9 @@ export default function SinglePage(props: Props) {
                       run.distance
                     ) : (
                       <input
-                        value={run.distance}
-                        onChange={(event) =>
-                          setEditDate(event.currentTarget.value)
+                        value={editDistance}
+                        onChange={(event: any) =>
+                          setEditDistance(event.currentTarget.value)
                         }
                       />
                     )}{' '}
@@ -83,9 +127,9 @@ export default function SinglePage(props: Props) {
                       run.pace
                     ) : (
                       <input
-                        value={run.pace}
-                        onChange={(event) =>
-                          setEditDate(event.currentTarget.value)
+                        value={editPace}
+                        onChange={(event: any) =>
+                          setEditPace(event.currentTarget.value)
                         }
                       />
                     )}{' '}
@@ -96,6 +140,10 @@ export default function SinglePage(props: Props) {
                     <button
                       onClick={() => {
                         setIdOnEditMode(run.id);
+                        setEditDate(run.date);
+                        setEditTime(run.time);
+                        setEditDistance(run.distance);
+                        setEditPace(run.pace);
                       }}
                     >
                       Edit
