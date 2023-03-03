@@ -1,4 +1,5 @@
 'use client';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { SingleRun } from '../../../database/singleRuns';
 import styles from './SingleRun.module.scss';
@@ -9,6 +10,7 @@ type Props = {
 
 export default function SinglePage(props: Props) {
   // const singleRuns = await getSingleRuns();
+  const router = useRouter();
   const [idOnEditMode, setIdOnEditMode] = useState<number>();
   const [editDate, setEditDate] = useState<string>('');
   const [editTime, setEditTime] = useState<string>('');
@@ -37,11 +39,17 @@ export default function SinglePage(props: Props) {
             });
 
             const data = await response.json();
+            console.log(data);
 
             if (data.error) {
               setError(data.error);
               return;
             }
+            setDate('');
+            setTime('');
+            /* setDistance();
+setPace(); */
+            router.refresh();
           }}
         >
           <label>
@@ -83,6 +91,9 @@ export default function SinglePage(props: Props) {
           <button>
             <b>Create a Run</b>
           </button>
+          {typeof error === 'string' && (
+            <div style={{ color: 'red' }}>{error}</div>
+          )}
         </form>
         <section className={styles.section}>
           {props.singleRuns.map((run) => {
@@ -150,14 +161,58 @@ export default function SinglePage(props: Props) {
                     </button>
                   ) : (
                     <button
-                      onClick={() => {
+                      onClick={async () => {
+                        const response = await fetch(
+                          `/api/running/single/${run.id}`,
+                          {
+                            method: 'PUT',
+                            headers: {
+                              'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                              date: editDate,
+                              time: editTime,
+                              distance: editDistance,
+                              pace: editPace,
+                            }),
+                          },
+                        );
+
+                        const data = await response.json();
+
+                        if (data.error) {
+                          setError(data.error);
+                          return;
+                        }
                         setIdOnEditMode(undefined);
+
+                        router.refresh();
                       }}
                     >
                       Save
                     </button>
                   )}
-                  <button>Delete</button>
+                  <button
+                    onClick={async () => {
+                      const response = await fetch(
+                        `/api/running/single/${run.id}`,
+                        {
+                          method: 'DELETE',
+                        },
+                      );
+
+                      const data = await response.json();
+
+                      if (data.error) {
+                        setError(data.error);
+                        return;
+                      }
+
+                      router.refresh();
+                    }}
+                  >
+                    Delete
+                  </button>
                 </li>
               </ul>
             );
