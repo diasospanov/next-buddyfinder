@@ -2,9 +2,9 @@ import bcrypt from 'bcrypt';
 import { NextRequest, NextResponse } from 'next/server';
 import { createUser, getUserByUsername } from '../../../../database/users';
 
-export type RegisterResponseBodyPost =
+/* export type RegisterResponseBodyPost =
   | { errors: { message: string }[] }
-  | { user: { username: string } };
+  | { user: { username: string } }; */
 
 export async function POST(request: NextRequest) {
   // 1. validate the data
