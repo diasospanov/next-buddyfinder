@@ -1,8 +1,8 @@
-'use client'
+'use client';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-export default function SignupForm(props: { returnTo?: string | string[] }) {
+export default function SigninForm(props: { returnTo?: string | string[] }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<{ message: string }[]>([]);
@@ -13,7 +13,7 @@ export default function SignupForm(props: { returnTo?: string | string[] }) {
       onSubmit={async (event) => {
         event.preventDefault();
 
-        const response = await fetch('/api/signup', {
+        const response = await fetch('/api/signin', {
           method: 'POST',
           body: JSON.stringify({ username, password }),
         });
@@ -55,7 +55,7 @@ export default function SignupForm(props: { returnTo?: string | string[] }) {
           onChange={(event) => setPassword(event.currentTarget.value)}
         />
       </label>
-      <button>Sign Up</button>
+      <button>Sign In</button>
     </form>
   );
 }
