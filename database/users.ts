@@ -17,6 +17,23 @@ type UserWithoutPasswordHash = User & {
   gender: string | null;
 };
 
+export const getUserBySessionToken = cache(async (token: string) => {
+  const [user] = await sql<{ id: number; username: string }[]>`
+    SELECT
+      users.id,
+      users.username
+    FROM
+      users
+    INNER JOIN
+      sessions ON (
+        sessions.token = ${token} AND
+        sessions.user_id = users.id AND
+        sessions.expiry_timestamp > now()
+      )
+  `;
+  return user;
+});
+
 export const getUserById = cache(async (id: number) => {
   const [user] = await sql<UserWithoutPasswordHash[]>`
     SELECT

@@ -20,6 +20,9 @@ export default function RootLayout(props: Props) {
             </div>
 
             <div className={styles.div}>
+              <Link href="/signout" prefetch={false}>
+                Sign Out
+              </Link>
               <Link href="/signin">Sign In</Link>
               <Link href="/signup">Sign Up</Link>
             </div>

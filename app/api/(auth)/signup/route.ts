@@ -9,7 +9,9 @@ export type RegisterResponseBodyPost =
   | { errors: { message: string }[] }
   | { user: { username: string } };
 
-export async function POST(request: NextRequest): Promise<NextResponse<RegisterResponseBodyPost>> {
+export async function POST(
+  request: NextRequest,
+): Promise<NextResponse<RegisterResponseBodyPost>> {
   // 1. validate the data
   const body = await request.json();
 
@@ -67,7 +69,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<RegisterR
   // const csrfSecret = createCsrfSecret();
 
   // - create the session
-  const session = await createSession(token, newUser.id /* , csrfSecret */);
+  const session = await createSession(token, newUser.id);
 
   if (!session) {
     return NextResponse.json(
