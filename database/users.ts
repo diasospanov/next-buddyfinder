@@ -10,6 +10,30 @@ type UserWithPasswordHash = User & {
   passwordHash: string;
 };
 
+type UserWithoutPasswordHash = User & {
+  firstName: string | null;
+  lastName: string | null;
+  age: number | null;
+  gender: string | null;
+};
+
+export const getUserById = cache(async (id: number) => {
+  const [user] = await sql<UserWithoutPasswordHash[]>`
+    SELECT
+      id,
+      username,
+      first_name,
+      last_name,
+      age,
+      gender
+    FROM
+      users
+    WHERE
+      id = ${id}
+  `;
+  return user;
+});
+
 export const getUserByUsernameWithPasswordHash = cache(
   async (username: string) => {
     const [user] = await sql<UserWithPasswordHash[]>`
