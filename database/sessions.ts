@@ -4,16 +4,16 @@ import { sql } from './connect';
 type Session = {
   id: number;
   token: string;
-  csrfSecret: string;
+  /* csrfSecret: string; */
 };
 
 export const createSession = cache(
-  async (token: string, userId: number, csrfSecret: string) => {
+  async (token: string, userId: number /* , csrfSecret: string */) => {
     const [session] = await sql<{ id: number; token: string }[]>`
       INSERT INTO sessions
-        (token, user_id, csrf_secret)
+        (token, user_id/* , csrf_secret */)
       VALUES
-        (${token}, ${userId}, ${csrfSecret})
+        (${token}, ${userId}/* , ${csrfSecret} */)
       RETURNING
         id,
         token
