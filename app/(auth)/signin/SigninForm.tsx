@@ -26,7 +26,7 @@ export default function SigninForm(props: { returnTo?: string | string[] }) {
         }
 
         router.push('/');
-
+        router.refresh();
         /*         const returnTo = getSafeReturnToPath(props.returnTo);
 
         if (returnTo) {
