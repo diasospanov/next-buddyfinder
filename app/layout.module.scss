@@ -4,11 +4,16 @@
   justify-content: space-between;
   gap: 50px;
   padding-top: 25px;
-  padding-bottom: 25px;
+  // padding-bottom: 25px;
   padding-left: 25px;
   padding-right: 25px;
   font-size: large;
   font-weight: 700;
+  text-decoration: none;
+  list-style-type: none;
+  & :hover {
+    color: #f2b443;
+  }
 }
 .footer {
   display: flex;
@@ -20,4 +25,6 @@
   align-items: center;
   justify-content: space-between;
   gap: 50px;
+  text-decoration: none;
+  list-style-type: none;
 }

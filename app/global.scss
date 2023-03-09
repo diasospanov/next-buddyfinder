@@ -4,13 +4,28 @@
   box-sizing: border-box;
 }
 body {
-  background-color: #696969;
+  background-color: #353935;
+  /* background: linear-gradient(
+    0deg,
+    rgba(105, 105, 105, 1) 0%,
+    rgba(255, 255, 255, 1) 40%,
+    rgba(255, 255, 255, 1) 60%,
+    rgba(105, 105, 105, 1) 100%
+  ); */
   margin: 0;
-  color: white;
+  color: #b8e6f3;
   text-decoration: none;
   list-style-type: none;
 
   font-family: 'Noto Sans JP', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  & a {
+    text-decoration: none;
+    color: #b8e6f3;
+    & :hover {
+      color: #f2b443;
+    }
+  }
 }

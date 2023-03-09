@@ -88,7 +88,7 @@ setPace(); */
             min/km
           </label>
           <br />
-          <button>
+          <button className={styles.button}>
             <b>Create a Run</b>
           </button>
           {typeof error === 'string' && (
@@ -146,9 +146,10 @@ setPace(); */
                     )}{' '}
                     min/km
                   </h2>{' '}
-                  <button>Join</button>
+                  <button className={styles.button}>Join</button>
                   {idOnEditMode !== run.id ? (
                     <button
+                      className={styles.button}
                       onClick={() => {
                         setIdOnEditMode(run.id);
                         setEditDate(run.date);
@@ -161,6 +162,7 @@ setPace(); */
                     </button>
                   ) : (
                     <button
+                      className={styles.button}
                       onClick={async () => {
                         const response = await fetch(
                           `/api/running/single/${run.id}`,
@@ -193,6 +195,7 @@ setPace(); */
                     </button>
                   )}
                   <button
+                    className={styles.button}
                     onClick={async () => {
                       const response = await fetch(
                         `/api/running/single/${run.id}`,

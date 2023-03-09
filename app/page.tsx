@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import styles from './page.module.scss';
 
@@ -11,8 +12,26 @@ export default function HomePage() {
     <main>
       <h1 className={styles.h1}>Welcome to Buddy Finder</h1>
       <section className={styles.section}>
-        <Link href="/running">Running</Link>
-        <Link href="/cycling">Cycling</Link>
+        <Link href="/running">
+          <Image
+            className={styles.link}
+            src="/images/running.jpg"
+            alt="running"
+            width="300"
+            height="400"
+          />
+          <p>Running</p>
+        </Link>
+        <Link href="/cycling">
+          <Image
+            className={styles.link}
+            src="/images/cycling.jpg"
+            alt="running"
+            width="300"
+            height="400"
+          />
+          <p>Cycling</p>
+        </Link>
       </section>
     </main>
   );
