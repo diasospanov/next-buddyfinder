@@ -1,34 +1,37 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import styles from './SignupForm.module.scss';
 
-export default function SignupForm(props: { returnTo?: string | string[] }) {
+export default function SignupForm(/* props: { returnTo?: string | string[] } */) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<{ message: string }[]>([]);
   const router = useRouter();
 
   return (
-    <form
-      onSubmit={async (event) => {
-        event.preventDefault();
+    <div className={styles.div}>
+      <form
+        className={styles.form}
+        onSubmit={async (event) => {
+          event.preventDefault();
 
-        const response = await fetch('/api/signup', {
-          method: 'POST',
-          body: JSON.stringify({ username, password }),
-        });
+          const response = await fetch('/api/signup', {
+            method: 'POST',
+            body: JSON.stringify({ username, password }),
+          });
 
-        const data = await response.json();
+          const data = await response.json();
 
-        if ('errors' in data) {
-          setErrors(data.errors);
-          return;
-        }
+          if ('errors' in data) {
+            setErrors(data.errors);
+            return;
+          }
 
-        router.push('/');
-        router.refresh();
+          router.push('/');
+          router.refresh();
 
-        /*         const returnTo = getSafeReturnToPath(props.returnTo);
+          /*         const returnTo = getSafeReturnToPath(props.returnTo);
 
         if (returnTo) {
           router.push(returnTo);
@@ -37,26 +40,33 @@ export default function SignupForm(props: { returnTo?: string | string[] }) {
 
         router.replace(`/profile/${data.user.username}`);
         router.refresh(); */
-      }}
-    >
-      {errors.map((error) => (
-        <div key={`error-${error.message}`}>Error: {error.message}</div>
-      ))}
-      <label>
-        username:
-        <input
-          value={username}
-          onChange={(event) => setUsername(event.currentTarget.value)}
-        />
-      </label>
-      <label>
-        password:
-        <input
-          value={password}
-          onChange={(event) => setPassword(event.currentTarget.value)}
-        />
-      </label>
-      <button>Sign Up</button>
-    </form>
+        }}
+      >
+        {errors.map((error) => (
+          <div key={`error-${error.message}`}>Error: {error.message}</div>
+        ))}
+        <label>
+          {/* username: */}
+          <input
+            className={styles.input}
+            placeholder="USERNAME"
+            value={username}
+            onChange={(event) => setUsername(event.currentTarget.value)}
+          />
+        </label>
+        <br />
+        <label>
+          {/* password: */}
+          <input
+            className={styles.input}
+            placeholder="PASSWORD"
+            value={password}
+            onChange={(event) => setPassword(event.currentTarget.value)}
+          />
+        </label>
+        <br />
+        <button className={styles.button}>Sign Up</button>
+      </form>
+    </div>
   );
 }

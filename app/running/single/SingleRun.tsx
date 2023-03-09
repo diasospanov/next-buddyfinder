@@ -53,39 +53,47 @@ setPace(); */
           }}
         >
           <label>
-            Date:{' '}
+            {/* Date:{' '} */}
             <input
+              className={styles.input}
+              placeholder="DATE (dd/mm/yy)"
               value={date}
               onChange={(event) => setDate(event.currentTarget.value)}
             />{' '}
-            dd/mm/yy
+            {/* dd/mm/yy */}
           </label>
           <br />
           <label>
-            Time:{' '}
+            {/* Time:{' '} */}
             <input
+              className={styles.input}
+              placeholder="TIME (hh:mm)"
               value={time}
               onChange={(event) => setTime(event.currentTarget.value)}
             />{' '}
-            hh:mm
+            {/* hh:mm */}
           </label>
           <br />
           <label>
-            Distance:{' '}
+            {/* Distance:{' '} */}
             <input
+              className={styles.input}
+              placeholder="DISTANCE (km)"
               value={distance}
               onChange={(event: any) => setDistance(event.currentTarget.value)}
             />{' '}
-            km
+            {/* km */}
           </label>
           <br />
           <label>
-            Pace:{' '}
+            {/* Pace:{' '} */}
             <input
+              className={styles.input}
+              placeholder="PACE (min/km)"
               value={pace}
               onChange={(event: any) => setPace(event.currentTarget.value)}
             />{' '}
-            min/km
+            {/* min/km */}
           </label>
           <br />
           <button className={styles.button}>
