@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 body {
-  background-color: #353935;
+  background-color: #7b7b7c;
   /* background: linear-gradient(
     0deg,
     rgba(105, 105, 105, 1) 0%,
@@ -13,7 +13,9 @@ body {
     rgba(105, 105, 105, 1) 100%
   ); */
   margin: 0;
-  color: #b8e6f3;
+  // color: #b8e6f3;
+  color: #02385a;
+  text-shadow: 1px 1px 4px #545454;
   text-decoration: none;
   list-style-type: none;
 
@@ -23,9 +25,11 @@ body {
   font-weight: 400;
   & a {
     text-decoration: none;
-    color: #b8e6f3;
+    color: #02385a;
+    text-shadow: 1px 1px 4px #545454;
     & :hover {
       color: #f2b443;
+      text-shadow: 1px 1px 4px #02385a;
     }
   }
 }

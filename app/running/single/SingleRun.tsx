@@ -99,20 +99,22 @@ setPace(); */
           <button className={styles.button}>
             <b>Create a Run</b>
           </button>
+
           {typeof error === 'string' && (
-            <div style={{ color: 'red' }}>{error}</div>
+            <div style={{ color: '#b8e6f3' }}>{error}</div>
           )}
         </form>
         <section className={styles.section}>
           {props.singleRuns.map((run) => {
             return (
-              <ul key={`run-${run.id}`}>
-                <li>
+              <ul className={styles.card} key={`run-${run.id}`}>
+                <li className={styles.inner}>
                   <h2>
                     {idOnEditMode !== run.id ? (
                       run.date
                     ) : (
                       <input
+                        className={styles.inputOnEdit}
                         value={editDate}
                         onChange={(event) =>
                           setEditDate(event.currentTarget.value)
@@ -124,6 +126,7 @@ setPace(); */
                       run.time
                     ) : (
                       <input
+                        className={styles.inputOnEdit}
                         value={editTime}
                         onChange={(event) =>
                           setEditTime(event.currentTarget.value)
@@ -135,6 +138,7 @@ setPace(); */
                       run.distance
                     ) : (
                       <input
+                        className={styles.inputOnEdit}
                         value={editDistance}
                         onChange={(event: any) =>
                           setEditDistance(event.currentTarget.value)
@@ -146,6 +150,7 @@ setPace(); */
                       run.pace
                     ) : (
                       <input
+                        className={styles.inputOnEdit}
                         value={editPace}
                         onChange={(event: any) =>
                           setEditPace(event.currentTarget.value)
