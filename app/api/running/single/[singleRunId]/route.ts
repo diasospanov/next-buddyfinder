@@ -2,13 +2,38 @@ import { NextRequest, NextResponse } from 'next/server';
 import {
   deleteSingleRunById,
   getSingleRunById,
+  SingleRun,
   updateSingleRunById,
 } from '../../../../../database/singleRuns';
+
+export type SingleRunResponseBodyGet =
+  | {
+      error: string;
+    }
+  | {
+      singleRun: SingleRun;
+    };
+
+export type SingleRunResponseBodyPut =
+  | {
+      error: string;
+    }
+  | {
+      singleRun: SingleRun;
+    };
+
+export type SingleRunResponseBodyDelete =
+  | {
+      error: string;
+    }
+  | {
+      singleRun: SingleRun;
+    };
 
 export async function GET(
   request: NextRequest,
   { params }: { params: Record<string, string | string[]> },
-) {
+): Promise<NextResponse<SingleRunResponseBodyGet>> {
   const singleRunId = Number(params.singleRunId);
 
   if (!singleRunId) {
@@ -27,7 +52,7 @@ export async function GET(
 export async function DELETE(
   request: NextRequest,
   { params }: { params: Record<string, string | string[]> },
-) {
+): Promise<NextResponse<SingleRunResponseBodyDelete>> {
   const singleRunId = Number(params.singleRunId);
 
   if (!singleRunId) {
@@ -46,7 +71,7 @@ export async function DELETE(
 export async function PUT(
   request: NextRequest,
   { params }: { params: Record<string, string | string[]> },
-) {
+): Promise<NextResponse<SingleRunResponseBodyPut>> {
   const singleRunId = Number(params.singleRunId);
 
   if (!singleRunId) {

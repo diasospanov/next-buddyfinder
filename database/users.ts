@@ -66,10 +66,14 @@ export const getUserByUsernameWithPasswordHash = cache(
 );
 
 export const getUserByUsername = cache(async (username: string) => {
-  const [user] = await sql<{ id: number; username: string }[]>`
+  const [user] = await sql<UserWithoutPasswordHash[]>`
     SELECT
       id,
-      username
+      username,
+      first_name,
+      last_name,
+      age,
+      gender
     FROM
       users
     WHERE

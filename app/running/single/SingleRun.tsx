@@ -1,11 +1,19 @@
 'use client';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { SingleRun } from '../../../database/singleRuns';
+import { User } from '../../../database/users';
 import styles from './SingleRun.module.scss';
 
 type Props = {
   singleRuns: SingleRun[];
+  user:
+    | {
+        id: number;
+        username: string;
+      }
+    | undefined;
 };
 
 export default function SinglePage(props: Props) {
@@ -21,6 +29,8 @@ export default function SinglePage(props: Props) {
   const [distance, setDistance] = useState<number>();
   const [pace, setPace] = useState<number>();
   const [error, setError] = useState<string>();
+  const [organiser, setOrganiser] = useState<string>();
+  const [participant, setParticipant] = useState<string>();
 
   return (
     <main>
@@ -30,16 +40,17 @@ export default function SinglePage(props: Props) {
           className={styles.form}
           onSubmit={async (event) => {
             event.preventDefault();
+
             const response = await fetch('/api/running/single', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
               },
-              body: JSON.stringify({ date, time, distance, pace }),
+              body: JSON.stringify({ organiser, date, time, distance, pace }),
             });
 
             const data = await response.json();
-            console.log(data);
+            console.log('create a run', data);
 
             if (data.error) {
               setError(data.error);
@@ -96,7 +107,10 @@ setPace(); */
             {/* min/km */}
           </label>
           <br />
-          <button className={styles.button}>
+          <button
+            className={styles.button}
+            onClick={() => setOrganiser(props.user?.username)}
+          >
             <b>Create a Run</b>
           </button>
 
@@ -158,8 +172,52 @@ setPace(); */
                       />
                     )}{' '}
                     min/km
+                    <br />
+                    <Link href={`/profile/${run.organiser}`}>
+                      Organiser: {run.organiser}
+                    </Link>
+                    <br />
+                    <Link href={`/profile/${run.participant}`}>
+                      Participant: {run.participant}
+                    </Link>
                   </h2>{' '}
-                  <button className={styles.button}>Join</button>
+                  <button
+                    className={styles.button}
+                    onClick={async () => {
+                      props.user?.username === run.organiser ? (
+                        <p>You are an Organiser</p>
+                      ) : (
+                        setParticipant(props.user?.username)
+                      );
+                      const response = await fetch(
+                        `/api/running/single/${run.id}`,
+                        {
+                          method: 'PUT',
+                          headers: {
+                            'Content-Type': 'application/json',
+                          },
+                          body: JSON.stringify({
+                            participant: participant,
+                            date: run.date,
+                            time: run.time,
+                            distance: run.distance,
+                            pace: run.pace,
+                          }),
+                        },
+                      );
+
+                      const data = await response.json();
+
+                      if (data.error) {
+                        setError(data.error);
+                        return;
+                      }
+                      console.log('participant', data);
+                      router.refresh();
+                    }}
+                  >
+                    Join
+                  </button>
                   {idOnEditMode !== run.id ? (
                     <button
                       className={styles.button}
