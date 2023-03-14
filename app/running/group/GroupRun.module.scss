@@ -1,0 +1,96 @@
+.h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 400;
+  font-size: 48px;
+}
+.div {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+.form {
+  display: block;
+  align-items: center;
+  padding-top: 80px;
+  padding-bottom: 50px;
+  text-align: center;
+}
+.input {
+  font-size: 17px;
+  padding: 8px 10px;
+  width: 250px;
+  margin-bottom: 10px;
+}
+.inputOnEdit {
+  font-size: 17px;
+  padding: 8px 10px;
+  width: 100px;
+  margin-bottom: 10px;
+}
+.section {
+  display: block;
+  align-items: center;
+  justify-content: space-evenly;
+  // padding-top: 50px;
+  // padding-bottom: 50px;
+}
+.button {
+  font-size: 16px;
+  font-weight: 200;
+  letter-spacing: 1px;
+  padding: 13px 20px 13px;
+  outline: 0;
+  border: 1px solid black;
+  cursor: pointer;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button:after {
+  content: '';
+  background-color: #f2b443;
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  height: 100%;
+  top: 7px;
+  left: 7px;
+  transition: 0.2s;
+}
+
+.button:hover:after {
+  top: 0px;
+  left: 0px;
+}
+
+@media (min-width: 768px) {
+  .button {
+    padding: 13px 50px 13px;
+  }
+}
+
+.card {
+  border-radius: 16px;
+  // box-shadow: 0 30px 30px -25px rgba(#4133b7, 0.25);
+  // max-width: 300px;
+
+  padding: 10px;
+  background-color: white;
+  color: #d8b573;
+  z-index: 2;
+  box-shadow: 10px 10px 5px #545454;
+}
+.inner {
+  padding: 20px;
+  // padding-top: 40px;
+  background-color: #365365;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}

@@ -2,11 +2,11 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { SingleRun } from '../../../database/singleRuns';
-import styles from './SingleRun.module.scss';
+import { GroupRun } from '../../../database/groupRuns';
+import styles from './GroupRun.module.scss';
 
 type Props = {
-  singleRuns: SingleRun[];
+  groupRuns: GroupRun[];
   user:
     | {
         id: number;
@@ -15,7 +15,7 @@ type Props = {
     | undefined;
 };
 
-export default function SinglePage(props: Props) {
+export default function GroupPage(props: Props) {
   // const singleRuns = await getSingleRuns();
   const router = useRouter();
   const [idOnEditMode, setIdOnEditMode] = useState<number>();
@@ -33,14 +33,14 @@ export default function SinglePage(props: Props) {
 
   return (
     <main>
-      <h1 className={styles.h1}>Single runners up for a run</h1>
+      <h1 className={styles.h1}>Up for a Group Run?</h1>
       <div className={styles.div}>
         <form
           className={styles.form}
           onSubmit={async (event) => {
             event.preventDefault();
 
-            const response = await fetch('/api/running/single', {
+            const response = await fetch('/api/running/group', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -118,7 +118,7 @@ setPace(); */
           )}
         </form>
         <section className={styles.section}>
-          {props.singleRuns.map((run) => {
+          {props.groupRuns.map((run) => {
             return (
               <ul className={styles.card} key={`run-${run.id}`}>
                 <li className={styles.inner}>
@@ -176,9 +176,7 @@ setPace(); */
                       Organiser: {run.organiser}
                     </Link>
                     <br />
-                    <Link href={`/profile/${run.participant}`}>
-                      Participant: {run.participant}
-                    </Link>
+                    <Link href="/">Participants: COUNTER</Link>
                   </h2>{' '}
                   <button
                     className={styles.button}
@@ -189,7 +187,7 @@ setPace(); */
                         setParticipant(props.user?.username)
                       );
                       const response = await fetch(
-                        `/api/running/single/${run.id}`,
+                        `/api/running/group/${run.id}`,
                         {
                           method: 'PUT',
                           headers: {
@@ -211,7 +209,7 @@ setPace(); */
                         setError(data.error);
                         return;
                       }
-                      console.log('participant', data);
+
                       router.refresh();
                     }}
                   >
@@ -235,7 +233,7 @@ setPace(); */
                       className={styles.button}
                       onClick={async () => {
                         const response = await fetch(
-                          `/api/running/single/${run.id}`,
+                          `/api/running/group/${run.id}`,
                           {
                             method: 'PUT',
                             headers: {
@@ -268,7 +266,7 @@ setPace(); */
                     className={styles.button}
                     onClick={async () => {
                       const response = await fetch(
-                        `/api/running/single/${run.id}`,
+                        `/api/running/group/${run.id}`,
                         {
                           method: 'DELETE',
                         },
