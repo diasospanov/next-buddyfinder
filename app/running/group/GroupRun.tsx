@@ -16,7 +16,6 @@ type Props = {
 };
 
 export default function GroupPage(props: Props) {
-  // const singleRuns = await getSingleRuns();
   const router = useRouter();
   const [idOnEditMode, setIdOnEditMode] = useState<number>();
   const [editDate, setEditDate] = useState<string>('');
@@ -181,27 +180,22 @@ setPace(); */
                   <button
                     className={styles.button}
                     onClick={async () => {
-                      props.user?.username === run.organiser ? (
+                      /* props.user?.username === run.organiser ? (
                         <p>You are an Organiser</p>
-                      ) : (
-                        setParticipant(props.user?.username)
-                      );
-                      const response = await fetch(
-                        `/api/running/group/${run.id}`,
-                        {
-                          method: 'PUT',
-                          headers: {
-                            'Content-Type': 'application/json',
-                          },
-                          body: JSON.stringify({
-                            participant: participant,
-                            date: run.date,
-                            time: run.time,
-                            distance: run.distance,
-                            pace: run.pace,
-                          }),
+                      ) : ( */
+                      router.refresh();
+                      setParticipant(props.user?.username);
+                      /* ); */
+                      const response = await fetch(`/api/running/group/join`, {
+                        method: 'POST',
+                        headers: {
+                          'Content-Type': 'application/json',
                         },
-                      );
+                        body: JSON.stringify({
+                          username: participant,
+                          runId: run.id,
+                        }),
+                      });
 
                       const data = await response.json();
 
