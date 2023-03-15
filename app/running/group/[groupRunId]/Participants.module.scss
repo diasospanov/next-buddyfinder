@@ -1,0 +1,34 @@
+.div {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  padding-top: 50px;
+  padding-bottom: 100px;
+}
+/* .section {
+  display: block;
+  align-items: center;
+  justify-content: space-evenly;
+  // padding-top: 50px;
+  // padding-bottom: 50px;
+} */
+.card {
+  border-radius: 16px;
+  // box-shadow: 0 30px 30px -25px rgba(#4133b7, 0.25);
+  // max-width: 300px;
+
+  padding: 10px;
+  background-color: white;
+  color: #d8b573;
+  z-index: 2;
+  box-shadow: 10px 10px 5px #545454;
+}
+.inner {
+  padding: 20px;
+  // padding-top: 40px;
+  background-color: #365365;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}

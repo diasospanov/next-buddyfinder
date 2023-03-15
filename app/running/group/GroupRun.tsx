@@ -122,54 +122,58 @@ setPace(); */
               <ul className={styles.card} key={`run-${run.id}`}>
                 <li className={styles.inner}>
                   <h2>
-                    {idOnEditMode !== run.id ? (
-                      run.date
-                    ) : (
-                      <input
-                        className={styles.inputOnEdit}
-                        value={editDate}
-                        onChange={(event) =>
-                          setEditDate(event.currentTarget.value)
-                        }
-                      />
-                    )}{' '}
-                    -{' '}
-                    {idOnEditMode !== run.id ? (
-                      run.time
-                    ) : (
-                      <input
-                        className={styles.inputOnEdit}
-                        value={editTime}
-                        onChange={(event) =>
-                          setEditTime(event.currentTarget.value)
-                        }
-                      />
-                    )}{' '}
-                    -{' '}
-                    {idOnEditMode !== run.id ? (
-                      run.distance
-                    ) : (
-                      <input
-                        className={styles.inputOnEdit}
-                        value={editDistance}
-                        onChange={(event: any) =>
-                          setEditDistance(event.currentTarget.value)
-                        }
-                      />
-                    )}{' '}
-                    km -{' '}
-                    {idOnEditMode !== run.id ? (
-                      run.pace
-                    ) : (
-                      <input
-                        className={styles.inputOnEdit}
-                        value={editPace}
-                        onChange={(event: any) =>
-                          setEditPace(event.currentTarget.value)
-                        }
-                      />
-                    )}{' '}
-                    min/km
+                    <Link href={`/running/group/${run.id}`}>
+                      <div>
+                        {idOnEditMode !== run.id ? (
+                          run.date
+                        ) : (
+                          <input
+                            className={styles.inputOnEdit}
+                            value={editDate}
+                            onChange={(event) =>
+                              setEditDate(event.currentTarget.value)
+                            }
+                          />
+                        )}{' '}
+                        -{' '}
+                        {idOnEditMode !== run.id ? (
+                          run.time
+                        ) : (
+                          <input
+                            className={styles.inputOnEdit}
+                            value={editTime}
+                            onChange={(event) =>
+                              setEditTime(event.currentTarget.value)
+                            }
+                          />
+                        )}{' '}
+                        -{' '}
+                        {idOnEditMode !== run.id ? (
+                          run.distance
+                        ) : (
+                          <input
+                            className={styles.inputOnEdit}
+                            value={editDistance}
+                            onChange={(event: any) =>
+                              setEditDistance(event.currentTarget.value)
+                            }
+                          />
+                        )}{' '}
+                        km -{' '}
+                        {idOnEditMode !== run.id ? (
+                          run.pace
+                        ) : (
+                          <input
+                            className={styles.inputOnEdit}
+                            value={editPace}
+                            onChange={(event: any) =>
+                              setEditPace(event.currentTarget.value)
+                            }
+                          />
+                        )}{' '}
+                        min/km
+                      </div>
+                    </Link>
                     <br />
                     <Link href={`/profile/${run.organiser}`}>
                       Organiser: {run.organiser}

@@ -4,7 +4,7 @@ import { sql } from './connect';
 export type GroupRunsParticipant = {
   id: number;
   username: string;
-  runId: string;
+  runId: number;
 };
 
 // get all groupRunsParticipants
@@ -32,3 +32,16 @@ export const addGroupRunParticipant = cache(
     return groupRunsParticipant;
   },
 );
+
+// get a single groupRun Participants
+export const getGroupRunParticipantsByRunId = cache(async (id: number) => {
+  const participants = await sql<GroupRunsParticipant[]>`
+    SELECT
+      *
+    FROM
+    group_runs_participants
+    WHERE
+    run_id = ${id}
+  `;
+  return participants;
+});
