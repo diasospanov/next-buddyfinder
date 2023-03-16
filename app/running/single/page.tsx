@@ -10,6 +10,8 @@ export const metadata = {
   description: 'Buddy for running',
 };
 
+export const dynamic = 'force-dynamic';
+
 export default async function SinglePage() {
   const singleRuns = await getSingleRuns();
   // 1. get the session token from the cookie

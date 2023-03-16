@@ -10,6 +10,8 @@ export const metadata = {
   description: 'Groups for Running',
 };
 
+export const dynamic = 'force-dynamic';
+
 export default async function GroupPage() {
   const groupRuns = await getGroupRuns();
   // 1. get the session token from the cookie

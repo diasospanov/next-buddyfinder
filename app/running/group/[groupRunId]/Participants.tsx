@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { GroupRun } from '../../../../database/groupRuns';
 import { GroupRunsParticipant } from '../../../../database/groupRunsParticipants';
 import styles from './Participants.module.scss';

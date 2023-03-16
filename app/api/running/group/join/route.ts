@@ -45,7 +45,11 @@ export async function POST(
   if (!user) {
     return NextResponse.json({ error: 'Sign In/Up to create a run' });
   }
+
   const body = await request.json();
+  if (body.username === body.runOrganiser) {
+    return NextResponse.json({ error: 'You are the Organiser' });
+  }
   const newGroupRunParticipant = await addGroupRunParticipant(
     body.username,
     body.runId,
@@ -53,5 +57,6 @@ export async function POST(
 
   return NextResponse.json({
     groupRunsParticipant: newGroupRunParticipant,
+    message: 'Joined!',
   });
 }

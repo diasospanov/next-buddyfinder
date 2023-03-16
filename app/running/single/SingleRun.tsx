@@ -29,7 +29,7 @@ export default function SinglePage(props: Props) {
   const [pace, setPace] = useState<number>();
   const [error, setError] = useState<string>();
   const [organiser, setOrganiser] = useState<string>();
-  const [participant, setParticipant] = useState<string>();
+  // const [participant, setParticipant] = useState<string>();
 
   return (
     <main>
@@ -49,7 +49,6 @@ export default function SinglePage(props: Props) {
             });
 
             const data = await response.json();
-            console.log('create a run', data);
 
             if (data.error) {
               setError(data.error);
@@ -183,11 +182,6 @@ setPace(); */
                   <button
                     className={styles.button}
                     onClick={async () => {
-                      props.user?.username === run.organiser ? (
-                        <p>You are an Organiser</p>
-                      ) : (
-                        setParticipant(props.user?.username)
-                      );
                       const response = await fetch(
                         `/api/running/single/${run.id}`,
                         {
@@ -196,11 +190,12 @@ setPace(); */
                             'Content-Type': 'application/json',
                           },
                           body: JSON.stringify({
-                            participant: participant,
+                            participant: props.user?.username,
                             date: run.date,
                             time: run.time,
                             distance: run.distance,
                             pace: run.pace,
+                            runOrganiser: run.organiser,
                           }),
                         },
                       );

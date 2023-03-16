@@ -28,94 +28,105 @@ export default function GroupPage(props: Props) {
   const [pace, setPace] = useState<number>();
   const [error, setError] = useState<string>();
   const [organiser, setOrganiser] = useState<string>();
-  const [participant, setParticipant] = useState<string>();
+  const [message, setMessage] = useState<string>();
+  // const [participant, setParticipant] = useState<string>();
 
   return (
     <main>
       <h1 className={styles.h1}>Up for a Group Run?</h1>
       <div className={styles.div}>
-        <form
-          className={styles.form}
-          onSubmit={async (event) => {
-            event.preventDefault();
+        <div>
+          <form
+            className={styles.form}
+            onSubmit={async (event) => {
+              event.preventDefault();
 
-            const response = await fetch('/api/running/group', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({ organiser, date, time, distance, pace }),
-            });
+              const response = await fetch('/api/running/group', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ organiser, date, time, distance, pace }),
+              });
 
-            const data = await response.json();
-            console.log('create a run', data);
+              const data = await response.json();
+              console.log('create a run', data);
 
-            if (data.error) {
-              setError(data.error);
-              return;
-            }
-            setDate('');
-            setTime('');
-            /* setDistance();
+              if (data.error) {
+                setError(data.error);
+                return;
+              }
+              setDate('');
+              setTime('');
+              /* setDistance();
 setPace(); */
-            router.refresh();
-          }}
-        >
-          <label>
-            {/* Date:{' '} */}
-            <input
-              className={styles.input}
-              placeholder="DATE (dd/mm/yy)"
-              value={date}
-              onChange={(event) => setDate(event.currentTarget.value)}
-            />{' '}
-            {/* dd/mm/yy */}
-          </label>
-          <br />
-          <label>
-            {/* Time:{' '} */}
-            <input
-              className={styles.input}
-              placeholder="TIME (hh:mm)"
-              value={time}
-              onChange={(event) => setTime(event.currentTarget.value)}
-            />{' '}
-            {/* hh:mm */}
-          </label>
-          <br />
-          <label>
-            {/* Distance:{' '} */}
-            <input
-              className={styles.input}
-              placeholder="DISTANCE (km)"
-              value={distance}
-              onChange={(event: any) => setDistance(event.currentTarget.value)}
-            />{' '}
-            {/* km */}
-          </label>
-          <br />
-          <label>
-            {/* Pace:{' '} */}
-            <input
-              className={styles.input}
-              placeholder="PACE (min/km)"
-              value={pace}
-              onChange={(event: any) => setPace(event.currentTarget.value)}
-            />{' '}
-            {/* min/km */}
-          </label>
-          <br />
-          <button
-            className={styles.button}
-            onClick={() => setOrganiser(props.user?.username)}
+              router.refresh();
+            }}
           >
-            <b>Create a Run</b>
-          </button>
-
+            <label>
+              {/* Date:{' '} */}
+              <input
+                className={styles.input}
+                placeholder="DATE (dd/mm/yy)"
+                value={date}
+                onChange={(event) => setDate(event.currentTarget.value)}
+              />{' '}
+              {/* dd/mm/yy */}
+            </label>
+            <br />
+            <label>
+              {/* Time:{' '} */}
+              <input
+                className={styles.input}
+                placeholder="TIME (hh:mm)"
+                value={time}
+                onChange={(event) => setTime(event.currentTarget.value)}
+              />{' '}
+              {/* hh:mm */}
+            </label>
+            <br />
+            <label>
+              {/* Distance:{' '} */}
+              <input
+                className={styles.input}
+                placeholder="DISTANCE (km)"
+                value={distance}
+                onChange={(event: any) =>
+                  setDistance(event.currentTarget.value)
+                }
+              />{' '}
+              {/* km */}
+            </label>
+            <br />
+            <label>
+              {/* Pace:{' '} */}
+              <input
+                className={styles.input}
+                placeholder="PACE (min/km)"
+                value={pace}
+                onChange={(event: any) => setPace(event.currentTarget.value)}
+              />{' '}
+              {/* min/km */}
+            </label>
+            <br />
+            <button
+              className={styles.button}
+              onClick={() => setOrganiser(props.user?.username)}
+            >
+              <b>Create a Run</b>
+            </button>
+          </form>
           {typeof error === 'string' && (
-            <div style={{ color: '#b8e6f3' }}>{error}</div>
+            <div style={{ color: '#b8e6f3' }}>
+              <h2 className={styles.message}>{error}</h2>
+            </div>
           )}
-        </form>
+          {typeof message === 'string' && (
+            <div style={{ color: '#b8e6f3' }}>
+              <h2 className={styles.message}>{message}</h2>
+            </div>
+          )}
+        </div>
         <section className={styles.section}>
           {props.groupRuns.map((run) => {
             return (
@@ -179,25 +190,25 @@ setPace(); */
                       Organiser: {run.organiser}
                     </Link>
                     <br />
-                    <Link href="/">Participants: COUNTER</Link>
+                    {/* <Link href="/">
+                      Participants:{' '}
+
+                    </Link> */}
                   </h2>{' '}
                   <button
                     className={styles.button}
                     onClick={async () => {
-                      /* props.user?.username === run.organiser ? (
-                        <p>You are an Organiser</p>
-                      ) : ( */
-                      router.refresh();
-                      setParticipant(props.user?.username);
-                      /* ); */
+                      // setParticipant(props.user?.username);
+
                       const response = await fetch(`/api/running/group/join`, {
                         method: 'POST',
                         headers: {
                           'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({
-                          username: participant,
+                          username: props.user?.username,
                           runId: run.id,
+                          runOrganiser: run.organiser,
                         }),
                       });
 
@@ -205,6 +216,10 @@ setPace(); */
 
                       if (data.error) {
                         setError(data.error);
+                        return;
+                      }
+                      if (data.message) {
+                        setMessage(data.message);
                         return;
                       }
 
