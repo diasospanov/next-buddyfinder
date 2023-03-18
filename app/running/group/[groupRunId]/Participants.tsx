@@ -18,7 +18,7 @@ type Props = {
 };
 
 export default function GroupPage(props: Props) {
-  const router = useRouter();
+  // const router = useRouter();
 
   /* const participantOfAGroupRun = {
     id: groupRunParticipants[0].id;
@@ -31,7 +31,9 @@ export default function GroupPage(props: Props) {
         <div className={styles.card}>
           <div className={styles.inner} key={`run-${props.groupRun.id}`}>
             <h2>
-              <p>Organiser: {props.groupRun.organiser}</p>
+              <Link href={`/profile/${props.groupRun.organiser}`}>
+                <p>Organiser: {props.groupRun.organiser}</p>
+              </Link>
               <br />
               <p>
                 {props.groupRun.date} at {props.groupRun.time}
@@ -50,9 +52,11 @@ export default function GroupPage(props: Props) {
               {props.groupRunParticipants.map((participant) => {
                 return (
                   <h2 key={`participant-${participant.id}`}>
-                    <ul>
-                      <li>{participant.username}</li>
-                    </ul>
+                    <Link href={`/profile/${participant.username}`}>
+                      <ul>
+                        <li>{participant.username}</li>
+                      </ul>
+                    </Link>
                   </h2>
                 );
               })}

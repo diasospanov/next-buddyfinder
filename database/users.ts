@@ -96,3 +96,15 @@ export const createUser = cache(
     return user;
   },
 );
+
+// delete a user by username
+export const deleteUserByUsername = cache(async (username: string) => {
+  const [user] = await sql<User[]>`
+    DELETE FROM
+      users
+    WHERE
+    username = ${username}
+    RETURNING *
+  `;
+  return user;
+});

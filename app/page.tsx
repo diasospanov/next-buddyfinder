@@ -20,13 +20,14 @@ export default function HomePage() {
             width="300"
             height="400"
           />
+
           <p>Running</p>
         </Link>
         <Link href="/cycling">
           <Image
             className={styles.link}
             src="/images/cycling.jpg"
-            alt="running"
+            alt="cycling"
             width="300"
             height="400"
           />

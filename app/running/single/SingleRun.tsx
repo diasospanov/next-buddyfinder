@@ -35,87 +35,93 @@ export default function SinglePage(props: Props) {
     <main>
       <h1 className={styles.h1}>Single runners up for a run</h1>
       <div className={styles.div}>
-        <form
-          className={styles.form}
-          onSubmit={async (event) => {
-            event.preventDefault();
+        <div>
+          <form
+            className={styles.form}
+            onSubmit={async (event) => {
+              event.preventDefault();
 
-            const response = await fetch('/api/running/single', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({ organiser, date, time, distance, pace }),
-            });
+              const response = await fetch('/api/running/single', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ organiser, date, time, distance, pace }),
+              });
 
-            const data = await response.json();
+              const data = await response.json();
 
-            if (data.error) {
-              setError(data.error);
-              return;
-            }
-            setDate('');
-            setTime('');
-            /* setDistance();
+              if (data.error) {
+                setError(data.error);
+                return;
+              }
+              setDate('');
+              setTime('');
+              /* setDistance();
 setPace(); */
-            router.refresh();
-          }}
-        >
-          <label>
-            {/* Date:{' '} */}
-            <input
-              className={styles.input}
-              placeholder="DATE (dd/mm/yy)"
-              value={date}
-              onChange={(event) => setDate(event.currentTarget.value)}
-            />{' '}
-            {/* dd/mm/yy */}
-          </label>
-          <br />
-          <label>
-            {/* Time:{' '} */}
-            <input
-              className={styles.input}
-              placeholder="TIME (hh:mm)"
-              value={time}
-              onChange={(event) => setTime(event.currentTarget.value)}
-            />{' '}
-            {/* hh:mm */}
-          </label>
-          <br />
-          <label>
-            {/* Distance:{' '} */}
-            <input
-              className={styles.input}
-              placeholder="DISTANCE (km)"
-              value={distance}
-              onChange={(event: any) => setDistance(event.currentTarget.value)}
-            />{' '}
-            {/* km */}
-          </label>
-          <br />
-          <label>
-            {/* Pace:{' '} */}
-            <input
-              className={styles.input}
-              placeholder="PACE (min/km)"
-              value={pace}
-              onChange={(event: any) => setPace(event.currentTarget.value)}
-            />{' '}
-            {/* min/km */}
-          </label>
-          <br />
-          <button
-            className={styles.button}
-            onClick={() => setOrganiser(props.user?.username)}
+              router.refresh();
+            }}
           >
-            <b>Create a Run</b>
-          </button>
-
+            <label>
+              {/* Date:{' '} */}
+              <input
+                className={styles.input}
+                name="date"
+                placeholder="DATE (dd/mm/yy)"
+                value={date}
+                onChange={(event) => setDate(event.currentTarget.value)}
+              />{' '}
+              {/* dd/mm/yy */}
+            </label>
+            <br />
+            <label>
+              {/* Time:{' '} */}
+              <input
+                className={styles.input}
+                placeholder="TIME (hh:mm)"
+                value={time}
+                onChange={(event) => setTime(event.currentTarget.value)}
+              />{' '}
+              {/* hh:mm */}
+            </label>
+            <br />
+            <label>
+              {/* Distance:{' '} */}
+              <input
+                className={styles.input}
+                placeholder="DISTANCE (km)"
+                value={distance}
+                onChange={(event: any) =>
+                  setDistance(event.currentTarget.value)
+                }
+              />{' '}
+              {/* km */}
+            </label>
+            <br />
+            <label>
+              {/* Pace:{' '} */}
+              <input
+                className={styles.input}
+                placeholder="PACE (min/km)"
+                value={pace}
+                onChange={(event: any) => setPace(event.currentTarget.value)}
+              />{' '}
+              {/* min/km */}
+            </label>
+            <br />
+            <button
+              className={styles.button}
+              onClick={() => setOrganiser(props.user?.username)}
+            >
+              <b>Create a Run</b>
+            </button>
+          </form>
           {typeof error === 'string' && (
-            <div style={{ color: '#b8e6f3' }}>{error}</div>
+            <div style={{ color: '#b8e6f3' }}>
+              <h2 className={styles.message}>{error}</h2>
+            </div>
           )}
-        </form>
+        </div>
         <section className={styles.section}>
           {props.singleRuns.map((run) => {
             return (
