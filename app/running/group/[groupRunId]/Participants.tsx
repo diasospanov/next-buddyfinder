@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+// import { useRouter } from 'next/navigation';
+// import { useState } from 'react';
 import { GroupRun } from '../../../../database/groupRuns';
 import { GroupRunsParticipant } from '../../../../database/groupRunsParticipants';
 import styles from './Participants.module.scss';
@@ -25,7 +25,11 @@ export default function GroupPage(props: Props) {
 
   }; */
 
-  return (
+  return !props.user ? (
+    <div className={styles.h2}>
+      <h2>Please Sign Up/In to view the Page</h2>
+    </div>
+  ) : (
     <main>
       <div className={styles.div}>
         <div className={styles.card}>
