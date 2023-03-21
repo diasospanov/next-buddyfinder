@@ -203,12 +203,12 @@ setPace(); */
                             'Content-Type': 'application/json',
                           },
                           body: JSON.stringify({
+                            organiser: run.organiser,
                             participant: props.user?.username,
                             date: run.date,
                             time: run.time,
                             distance: run.distance,
                             pace: run.pace,
-                            runOrganiser: run.organiser,
                           }),
                         },
                       );
