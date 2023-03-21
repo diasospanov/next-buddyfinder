@@ -23,7 +23,7 @@ export const getSingleRuns = cache(async () => {
 export const createSingleRun = cache(
   async (
     organiser: string,
-    participant: string | null,
+
     date: string,
     time: string,
     distance: number,
@@ -33,7 +33,7 @@ export const createSingleRun = cache(
       INSERT INTO singleRuns
         (organiser, participant, date, time, distance, pace)
       VALUES
-        (${organiser}, ${participant}, ${date}, ${time}, ${distance}, ${pace})
+        (${organiser}, ${date}, ${time}, ${distance}, ${pace})
       RETURNING *
     `;
     return singleRun;
