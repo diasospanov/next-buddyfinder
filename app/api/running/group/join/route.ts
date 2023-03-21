@@ -23,9 +23,9 @@ export type GroupRunsParticipantsResponseBodyPost =
       groupRunsParticipant: GroupRunsParticipant;
     };
 
-export async function GET(
-  request: NextRequest,
-): Promise<NextResponse<GroupRunsParticipantsResponseBodyGet>> {
+export async function GET(): Promise<
+  NextResponse<GroupRunsParticipantsResponseBodyGet>
+> {
   const groupRunsParticipants = await getGroupRunsParticipants();
   return NextResponse.json({ groupRunsParticipants: groupRunsParticipants });
 }
