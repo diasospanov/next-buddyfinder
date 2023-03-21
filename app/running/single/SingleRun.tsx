@@ -29,7 +29,7 @@ export default function SinglePage(props: Props) {
   const [pace, setPace] = useState<number>();
   const [error, setError] = useState<string>();
   const [organiser, setOrganiser] = useState<string>();
-  const [participant, setParticipant] = useState<string>('');
+  const participant = '';
 
   return (
     <main>

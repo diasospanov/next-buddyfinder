@@ -23,9 +23,7 @@ export type GroupRunsResponseBodyPost =
       groupRun: GroupRun;
     };
 
-export async function GET(
-  request: NextRequest,
-): Promise<NextResponse<GroupRunsResponseBodyGet>> {
+export async function GET(): Promise<NextResponse<GroupRunsResponseBodyGet>> {
   const groupRuns = await getGroupRuns();
   return NextResponse.json({ groupRuns: groupRuns });
 }

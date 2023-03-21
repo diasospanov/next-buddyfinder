@@ -30,10 +30,11 @@ export type SingleRunResponseBodyDelete =
       singleRun: SingleRun;
     };
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: Record<string, string | string[]> },
-): Promise<NextResponse<SingleRunResponseBodyGet>> {
+export async function GET({
+  params,
+}: {
+  params: Record<string, string | string[]>;
+}): Promise<NextResponse<SingleRunResponseBodyGet>> {
   const singleRunId = Number(params.singleRunId);
 
   if (!singleRunId) {

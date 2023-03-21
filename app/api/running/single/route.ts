@@ -23,9 +23,7 @@ export type SingleRunsResponseBodyPost =
       singleRun: SingleRun;
     };
 
-export async function GET(
-  request: NextRequest,
-): Promise<NextResponse<SingleRunsResponseBodyGet>> {
+export async function GET(): Promise<NextResponse<SingleRunsResponseBodyGet>> {
   const singleRuns = await getSingleRuns();
   return NextResponse.json({ singleRuns: singleRuns });
 }
