@@ -3,7 +3,7 @@ import { sql } from './connect';
 
 export type GroupRun = {
   id: number;
-  organiser: string | null;
+  organiser: string;
   date: string;
   time: string;
   distance: number;
@@ -21,7 +21,7 @@ export const getGroupRuns = cache(async () => {
 // create a single groupRun
 export const createGroupRun = cache(
   async (
-    organiser: string | null,
+    organiser: string,
     date: string,
     time: string,
     distance: number,
@@ -67,7 +67,7 @@ export const deleteGroupRunById = cache(async (id: number) => {
 export const updateGroupRunById = cache(
   async (
     id: number,
-    organiser: string | null,
+    organiser: string,
     date: string,
     time: string,
     distance: number,
