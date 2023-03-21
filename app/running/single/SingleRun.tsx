@@ -203,7 +203,10 @@ setPace(); */
                           },
                           body: JSON.stringify({
                             organiser: run.organiser,
-                            participant: props.user?.username,
+                            participant:
+                              props.user?.username === undefined
+                                ? null
+                                : props.user.username,
                             date: run.date,
                             time: run.time,
                             distance: run.distance,

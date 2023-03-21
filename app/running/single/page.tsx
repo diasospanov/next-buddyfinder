@@ -20,6 +20,7 @@ export default async function SinglePage() {
 
   // 2. validate that session
   // 3. get the user profile matching the session
+
   const user = !sessionToken?.value
     ? undefined
     : await getUserBySessionToken(sessionToken.value);
