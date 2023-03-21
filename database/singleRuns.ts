@@ -80,7 +80,7 @@ export const updateSingleRunById = cache(
       UPDATE
         singleRuns
       SET
-      organiser = ${organiser},
+        organiser = ${organiser},
         participant = ${participant},
         date = ${date},
         time = ${time},

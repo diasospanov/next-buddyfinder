@@ -77,6 +77,7 @@ export const updateGroupRunById = cache(
       UPDATE
         groupRuns
       SET
+      organiser = ${organiser},
         date = ${date},
         time = ${time},
         distance = ${distance},

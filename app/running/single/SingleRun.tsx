@@ -29,7 +29,7 @@ export default function SinglePage(props: Props) {
   const [pace, setPace] = useState<number>();
   const [error, setError] = useState<string>();
   const [organiser, setOrganiser] = useState<string>();
-  // const [participant, setParticipant] = useState<string>();
+  const [participant, setParticipant] = useState<string>('');
 
   return (
     <main>
@@ -46,7 +46,14 @@ export default function SinglePage(props: Props) {
                 headers: {
                   'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ organiser, date, time, distance, pace }),
+                body: JSON.stringify({
+                  organiser,
+                  participant,
+                  date,
+                  time,
+                  distance,
+                  pace,
+                }),
               });
 
               const data = await response.json();
