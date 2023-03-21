@@ -42,7 +42,7 @@ export async function POST(
 
   const user = await getUserByUsername(body.username);
 
-  if (user) {
+  if (typeof user !== 'undefined') {
     return NextResponse.json(
       { errors: [{ message: 'username is already taken' }] },
       { status: 400 },
@@ -55,7 +55,7 @@ export async function POST(
   // 4. create the user
   const newUser = await createUser(body.username, passwordHash);
 
-  if (!newUser) {
+  if (typeof newUser === 'undefined') {
     return NextResponse.json(
       { errors: [{ message: 'user creation failed' }] },
       { status: 500 },
@@ -71,7 +71,7 @@ export async function POST(
   // - create the session
   const session = await createSession(token, newUser.id);
 
-  if (!session) {
+  if (typeof session === 'undefined') {
     return NextResponse.json(
       { errors: [{ message: 'session creation failed' }] },
       { status: 500 },

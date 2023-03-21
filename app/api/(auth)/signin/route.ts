@@ -40,7 +40,7 @@ export async function POST(
     body.username,
   );
 
-  if (!userWithPasswordHash) {
+  if (typeof userWithPasswordHash === 'undefined') {
     // consider using the same output for user or password not valid
     return NextResponse.json(
       { errors: [{ message: 'user not found' }] },
@@ -71,7 +71,7 @@ export async function POST(
   // - create the session
   const session = await createSession(token, userWithPasswordHash.id);
 
-  if (!session) {
+  if (typeof session === 'undefined') {
     return NextResponse.json(
       { errors: [{ message: 'session creation failed' }] },
       { status: 500 },

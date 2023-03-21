@@ -48,6 +48,7 @@ export async function POST(
   const body = await request.json();
   const newSingleRun = await createSingleRun(
     body.organiser,
+    body.participant,
     body.date,
     body.time,
     body.distance,

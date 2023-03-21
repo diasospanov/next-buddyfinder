@@ -23,6 +23,7 @@ export const getSingleRuns = cache(async () => {
 export const createSingleRun = cache(
   async (
     organiser: string | null,
+    participant: string | null,
     date: string,
     time: string,
     distance: number,
@@ -30,9 +31,9 @@ export const createSingleRun = cache(
   ) => {
     const [singleRun] = await sql<SingleRun[]>`
       INSERT INTO singleRuns
-        (organiser, date, time, distance, pace)
+        (organiser, participant, date, time, distance, pace)
       VALUES
-        (${organiser}, ${date}, ${time}, ${distance}, ${pace})
+        (${organiser}, ${participant}, ${date}, ${time}, ${distance}, ${pace})
       RETURNING *
     `;
     return singleRun;
@@ -79,6 +80,7 @@ export const updateSingleRunById = cache(
       UPDATE
         singleRuns
       SET
+      organiser = ${organiser},
         participant = ${participant},
         date = ${date},
         time = ${time},

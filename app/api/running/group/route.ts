@@ -42,7 +42,7 @@ export async function POST(
   // 3. get the user profile matching the session
   const user = token && (await getUserBySessionToken(token.value));
 
-  if (!user) {
+  if (typeof user === 'undefined') {
     return NextResponse.json({ error: 'Sign In/Up to create a run' });
   }
   const body = await request.json();
