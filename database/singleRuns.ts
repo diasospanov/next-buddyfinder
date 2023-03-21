@@ -3,7 +3,7 @@ import { sql } from './connect';
 
 export type SingleRun = {
   id: number;
-  organiser: string;
+  organiser: string | null;
   participant: string | null;
   date: string;
   time: string;
@@ -22,7 +22,7 @@ export const getSingleRuns = cache(async () => {
 // create a single singleRun
 export const createSingleRun = cache(
   async (
-    organiser: string,
+    organiser: string | null,
     participant: string | null,
     date: string,
     time: string,
@@ -69,7 +69,7 @@ export const deleteSingleRunById = cache(async (id: number) => {
 export const updateSingleRunById = cache(
   async (
     id: number,
-    organiser: string,
+    organiser: string | null,
     participant: string | null,
     date: string,
     time: string,
