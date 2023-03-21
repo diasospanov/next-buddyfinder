@@ -249,6 +249,8 @@ setPace(); */
                               'Content-Type': 'application/json',
                             },
                             body: JSON.stringify({
+                              organiser: run.organiser,
+                              participant: run.participant,
                               date: editDate,
                               time: editTime,
                               distance: editDistance,
