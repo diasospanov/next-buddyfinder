@@ -55,7 +55,9 @@ export const getUserByUsernameWithPasswordHash = cache(
   async (username: string) => {
     const [user] = await sql<UserWithPasswordHash[]>`
     SELECT
-      *
+      id,
+      username,
+      password_hash
     FROM
       users
     WHERE
@@ -98,7 +100,7 @@ export const createUser = cache(
 );
 
 // delete a user by username
-export const deleteUserByUsername = cache(async (username: string) => {
+/* export const deleteUserByUsername = cache(async (username: string) => {
   const [user] = await sql<User[]>`
     DELETE FROM
       users
@@ -108,3 +110,4 @@ export const deleteUserByUsername = cache(async (username: string) => {
   `;
   return user;
 });
+ */

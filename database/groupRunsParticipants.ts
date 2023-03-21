@@ -3,8 +3,8 @@ import { sql } from './connect';
 
 export type GroupRunsParticipant = {
   id: number;
-  username: string;
-  runId: number;
+  username: string | null;
+  runId: number | null;
 };
 
 // get all groupRunsParticipants
