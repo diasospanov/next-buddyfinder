@@ -2,7 +2,7 @@ export async function up(sql) {
   await sql`
   CREATE TABLE groupRuns (
   id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  organiser varchar(40),
+  organiser varchar(40) NOT NULL,
   date varchar(30) NOT NULL,
   time varchar(30) NOT NULL,
   distance numeric(30) NOT NULL,

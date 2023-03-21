@@ -23,7 +23,6 @@ export const getSingleRuns = cache(async () => {
 export const createSingleRun = cache(
   async (
     organiser: string,
-
     date: string,
     time: string,
     distance: number,
@@ -31,7 +30,7 @@ export const createSingleRun = cache(
   ) => {
     const [singleRun] = await sql<SingleRun[]>`
       INSERT INTO singleRuns
-        (organiser, participant, date, time, distance, pace)
+        (organiser, date, time, distance, pace)
       VALUES
         (${organiser}, ${date}, ${time}, ${distance}, ${pace})
       RETURNING *
