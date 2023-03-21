@@ -50,7 +50,6 @@ export default function GroupPage(props: Props) {
               });
 
               const data = await response.json();
-              console.log('create a run', data);
 
               if (data.error) {
                 setError(data.error);
