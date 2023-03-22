@@ -3,7 +3,7 @@ export async function up(sql) {
   CREATE TABLE singleRuns (
   id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   organiser varchar(40) NOT NULL,
-  participant varchar(40),
+  participant varchar(40) NOT NULL,
   date varchar(30) NOT NULL,
   time varchar(30) NOT NULL,
   distance numeric(30) NOT NULL,
