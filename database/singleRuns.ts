@@ -4,7 +4,7 @@ import { sql } from './connect';
 export type SingleRun = {
   id: number;
   organiser: string;
-  participant: string | null;
+  participant: string;
   date: string;
   time: string;
   distance: number;
@@ -23,6 +23,7 @@ export const getSingleRuns = cache(async () => {
 export const createSingleRun = cache(
   async (
     organiser: string,
+    participant: string,
     date: string,
     time: string,
     distance: number,
@@ -30,9 +31,9 @@ export const createSingleRun = cache(
   ) => {
     const [singleRun] = await sql<SingleRun[]>`
       INSERT INTO singleRuns
-        (organiser, date, time, distance, pace)
+        (organiser, participant, date, time, distance, pace)
       VALUES
-        (${organiser}, ${date}, ${time}, ${distance}, ${pace})
+        (${organiser}, ${participant}, ${date}, ${time}, ${distance}, ${pace})
       RETURNING *
     `;
     return singleRun;

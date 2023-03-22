@@ -29,7 +29,7 @@ export default function SinglePage(props: Props) {
   const [pace, setPace] = useState<number>();
   const [error, setError] = useState<string>();
   const [organiser, setOrganiser] = useState<string>();
-  // const participant = '';
+  const participant = '';
 
   return (
     <main>
@@ -48,6 +48,7 @@ export default function SinglePage(props: Props) {
                 },
                 body: JSON.stringify({
                   organiser,
+                  participant,
                   date,
                   time,
                   distance,
@@ -205,7 +206,7 @@ setPace(); */
                             organiser: run.organiser,
                             participant:
                               props.user?.username === undefined
-                                ? null
+                                ? participant
                                 : props.user.username,
                             date: run.date,
                             time: run.time,
