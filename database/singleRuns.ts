@@ -70,7 +70,7 @@ export const updateSingleRunById = cache(
   async (
     id: number,
     organiser: string,
-    participant: string | null,
+    participant: string,
     date: string,
     time: string,
     distance: number,
