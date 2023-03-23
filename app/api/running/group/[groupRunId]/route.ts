@@ -11,7 +11,7 @@ export type GroupRunResponseBodyGet =
       error: string;
     }
   | {
-      groupRun: GroupRun;
+      groupRun: GroupRun | undefined;
     };
 
 export type GroupRunResponseBodyPut =
@@ -19,7 +19,7 @@ export type GroupRunResponseBodyPut =
       error: string;
     }
   | {
-      groupRun: GroupRun;
+      groupRun: GroupRun | undefined;
     };
 
 export type GroupRunResponseBodyDelete =
@@ -27,7 +27,7 @@ export type GroupRunResponseBodyDelete =
       error: string;
     }
   | {
-      groupRun: GroupRun;
+      groupRun: GroupRun | undefined;
     };
 
 export async function GET(

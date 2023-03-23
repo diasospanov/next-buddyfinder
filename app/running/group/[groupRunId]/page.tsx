@@ -1,4 +1,5 @@
 import { cookies } from 'next/headers';
+import { notFound } from 'next/navigation';
 import { getGroupRunById } from '../../../../database/groupRuns';
 import { getGroupRunParticipantsByRunId } from '../../../../database/groupRunsParticipants';
 import { getUserBySessionToken } from '../../../../database/users';
@@ -18,6 +19,10 @@ export default async function GroupRunPage({ params }: Props) {
   const groupRunParticipants = await getGroupRunParticipantsByRunId(
     params.groupRunId,
   );
+
+  if (typeof groupRun === 'undefined') {
+    notFound();
+  }
   // console.log('a', groupRunParticipants);
   // 1. get the session token from the cookie
   const cookieStore = cookies();
