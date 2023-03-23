@@ -20,7 +20,7 @@ export type SingleRunsResponseBodyPost =
       error: string;
     }
   | {
-      singleRun: SingleRun;
+      singleRun: SingleRun | undefined;
     };
 
 export async function GET(): Promise<NextResponse<SingleRunsResponseBodyGet>> {

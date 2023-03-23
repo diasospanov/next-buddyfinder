@@ -11,7 +11,7 @@ export type SingleRunResponseBodyGet =
       error: string;
     }
   | {
-      singleRun: SingleRun;
+      singleRun: SingleRun | undefined;
     };
 
 export type SingleRunResponseBodyPut =
@@ -19,7 +19,7 @@ export type SingleRunResponseBodyPut =
       error: string;
     }
   | {
-      singleRun: SingleRun;
+      singleRun: SingleRun | undefined;
     };
 
 export type SingleRunResponseBodyDelete =
@@ -27,7 +27,7 @@ export type SingleRunResponseBodyDelete =
       error: string;
     }
   | {
-      singleRun: SingleRun;
+      singleRun: SingleRun | undefined;
     };
 
 export async function GET({

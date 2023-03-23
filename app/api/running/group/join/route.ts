@@ -20,7 +20,7 @@ export type GroupRunsParticipantsResponseBodyPost =
       error: string;
     }
   | {
-      groupRunsParticipant: GroupRunsParticipant;
+      groupRunsParticipant: GroupRunsParticipant | undefined;
     };
 
 export async function GET(): Promise<

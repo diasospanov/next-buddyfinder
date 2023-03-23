@@ -20,7 +20,7 @@ export type GroupRunsResponseBodyPost =
       error: string;
     }
   | {
-      groupRun: GroupRun;
+      groupRun: GroupRun | undefined;
     };
 
 export async function GET(): Promise<NextResponse<GroupRunsResponseBodyGet>> {
