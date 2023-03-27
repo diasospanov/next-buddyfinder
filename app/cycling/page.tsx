@@ -9,10 +9,13 @@ export const metadata = {
 export default function CyclingPage() {
   return (
     <main>
-      <h1 className={styles.h1}>I am looking for a</h1>
+      <h1 className={styles.h1}>
+        Cycling Section is under construction.
+        <br />
+        Consider finding a running buddy in the meantime.
+      </h1>
       <section className={styles.section}>
-        <Link href="/cycling/single">Single rider</Link>
-        <Link href="/cycling/group">Group ride</Link>
+        <Link href="/running">Take me to a Running Section</Link>
       </section>
     </main>
   );

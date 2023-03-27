@@ -13,7 +13,7 @@
 .form {
   display: block;
   align-items: center;
-  padding-top: 80px;
+  padding-top: 20px;
   padding-bottom: 50px;
   text-align: center;
 }
@@ -22,6 +22,8 @@
   padding: 8px 10px;
   width: 250px;
   margin-bottom: 10px;
+  border-radius: 10px;
+  font-family: 'Comfortaa', cursive;
 }
 .inputOnEdit {
   font-size: 17px;
@@ -49,12 +51,14 @@
   padding: 13px 20px 13px;
   outline: 0;
   border: 1px solid black;
+  border-radius: 10px;
   cursor: pointer;
   position: relative;
   background-color: rgba(0, 0, 0, 0);
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  font-family: 'Comfortaa', cursive;
 }
 
 .button:after {
@@ -67,6 +71,7 @@
   top: 7px;
   left: 7px;
   transition: 0.2s;
+  border-radius: 10px;
 }
 
 .button:hover:after {
@@ -85,11 +90,11 @@
   // box-shadow: 0 30px 30px -25px rgba(#4133b7, 0.25);
   // max-width: 300px;
 
-  padding: 10px;
+  padding: 5px;
   background-color: white;
   color: #d8b573;
   z-index: 2;
-  box-shadow: 10px 10px 5px #545454;
+  box-shadow: 10px 10px 5px #333333;
 }
 .inner {
   padding: 20px;

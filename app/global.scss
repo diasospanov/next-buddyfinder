@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 body {
-  background-color: #7b7b7c;
+  background-color: #545454;
   /* background: linear-gradient(
     0deg,
     rgba(105, 105, 105, 1) 0%,
@@ -13,23 +13,23 @@ body {
     rgba(105, 105, 105, 1) 100%
   ); */
   margin: 0;
-  // color: #b8e6f3;
-  color: #02385a;
-  text-shadow: 1px 1px 4px #545454;
+  color: rgba(255, 255, 255, 0.9);
+  // color: #02385a;
+  text-shadow: 1px 1px 4px #111111;
   text-decoration: none;
   list-style-type: none;
-
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: 'Comfortaa', cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  src: url('../public/Comfortaa-Medium.ttf');
   font-weight: 400;
   & a {
     text-decoration: none;
-    color: #02385a;
-    text-shadow: 1px 1px 4px #545454;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 1px 1px 4px #111111;
     & :hover {
       color: #f2b443;
-      text-shadow: 1px 1px 4px #02385a;
+      text-shadow: 1px 1px 4px #111111;
     }
   }
 }
