@@ -59,6 +59,7 @@ export default function SigninForm(/* props: { returnTo?: string | string[] } */
           <input
             className={styles.input}
             placeholder="PASSWORD"
+            type="password"
             value={password}
             onChange={(event) => setPassword(event.currentTarget.value)}
           />

@@ -24,8 +24,8 @@ export default function GroupPage(props: Props) {
   const [editPace, setEditPace] = useState<number>();
   const [date, setDate] = useState<string>('');
   const [time, setTime] = useState<string>('');
-  const [distance, setDistance] = useState<number>();
-  const [pace, setPace] = useState<number>();
+  const [distance, setDistance] = useState<number | string>();
+  const [pace, setPace] = useState<number | string>();
   const [error, setError] = useState<string>();
   const [organiser, setOrganiser] = useState<string>();
   const [message, setMessage] = useState<string>();
@@ -57,8 +57,8 @@ export default function GroupPage(props: Props) {
               }
               setDate('');
               setTime('');
-              /* setDistance();
-setPace(); */
+              setDistance('');
+              setPace('');
               router.refresh();
             }}
           >
